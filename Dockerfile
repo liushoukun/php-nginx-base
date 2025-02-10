@@ -11,8 +11,11 @@ RUN apk update && apk add --no-cache \
     libzip-dev \
     freetype-dev \
     libjpeg-turbo-dev \
-    bash
-
+    bash \
+    autoconf \
+    g++ \
+    make
+    
 # compile native PHP packages
 RUN docker-php-ext-install \
     gd \
@@ -23,7 +26,6 @@ RUN docker-php-ext-install \
 
 # configure packages
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-
 # install additional packages from PECL
 RUN pecl channel-update pecl.php.net && \
     pecl install zip && docker-php-ext-enable zip \
