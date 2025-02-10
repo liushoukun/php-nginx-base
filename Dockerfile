@@ -30,7 +30,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN pecl channel-update pecl.php.net && \
     pecl install zip && docker-php-ext-enable zip \
     && pecl install igbinary && docker-php-ext-enable igbinary \
-    && pecl install msgpack && docker-php-ext-enable msgpack && \
+    && pecl install msgpack && docker-php-ext-enable msgpack  \
     && yes | pecl install redis && docker-php-ext-enable redis
 
 RUN docker-php-ext-install opcache
