@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine3.17
+FROM php:8.3.16-fpm-alpine
 
 # install necessary alpine packages
 RUN apk update && apk add --no-cache \
