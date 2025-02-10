@@ -14,7 +14,8 @@ RUN apk update && apk add --no-cache \
     bash \
     autoconf \
     g++ \
-    make
+    make \
+    liblz4-dev
     
 # compile native PHP packages
 RUN docker-php-ext-install \
