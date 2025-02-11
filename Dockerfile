@@ -1,4 +1,4 @@
-FROM php:8.3.16-fpm-alpine
+FROM php:8.3-fpm-alpine
 
 # install necessary alpine packages
 RUN apk update && apk add --no-cache \
@@ -13,10 +13,8 @@ RUN apk update && apk add --no-cache \
     libjpeg-turbo-dev \
     bash \
     autoconf \
-    g++ \
-    make \
-    liblz4-dev
-    
+    lz4-dev
+
 # compile native PHP packages
 RUN docker-php-ext-install \
     gd \
@@ -24,6 +22,7 @@ RUN docker-php-ext-install \
     bcmath \
     mysqli \
     pdo_mysql
+
 
 # configure packages
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
@@ -34,7 +33,7 @@ RUN pecl channel-update pecl.php.net && \
     && pecl install msgpack && docker-php-ext-enable msgpack  \
     && yes | pecl install redis && docker-php-ext-enable redis
 
-RUN docker-php-ext-install opcache
+RUN docker-php-ext-install opcache && docker-php-ext-enable opcache
 # install nginx
 RUN apk add --no-cache nginx
 
