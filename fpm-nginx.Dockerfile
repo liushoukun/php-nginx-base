@@ -5,7 +5,7 @@ ARG APP_CODE_PATH=../
 # install application dependencies
 WORKDIR /var/www/app
 COPY ${APP_CODE_PATH}composer.json ${APP_CODE_PATH}composer.lock* ./
-#RUN composer install --no-scripts --no-autoloader --ansi --no-interaction --no-dev -vvv
+RUN composer install --no-scripts --no-autoloader --ansi --no-interaction --no-dev -vvv
 
 # copy php config files
 COPY /docker/php-fpm/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
